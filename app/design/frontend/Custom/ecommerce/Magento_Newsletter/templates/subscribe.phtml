@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+<div class="block newsletter">
+    <div id="serverResponse"></div>
+    <div class="title"><strong><?= $block->escapeHtml(__('Newsletter')) ?></strong></div>
+    <div class="content">
+        <form class="form subscribe"
+              novalidate
+              action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+              method="post"
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <label class="label" for="newsletter"><span><?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?></span></label>
+                <div class="control">
+                    <input name="email" type="email" id="newsletter"
+                           placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
+                           data-mage-init='{"mage/trim-input":{}}'
+                           data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $(function () { // to ensure that code evaluates on page load
+            let patternEmail = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+
+            $("#newsletter").focusout(function(){
+                let emailInput = $("input#newsletter").val();
+
+                if(patternEmail.test(emailInput)){
+                    $("#newsletter-validate-detail").submit();
+               }
+               else{
+                   alert('Invalid Email');
+                }
+            });
+        });
+    });
+</script>
