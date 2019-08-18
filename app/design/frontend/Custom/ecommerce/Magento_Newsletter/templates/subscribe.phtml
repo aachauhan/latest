@@ -43,32 +43,11 @@
 
                 if(patternEmail.test(emailInput)){
                     $("#newsletter-validate-detail").submit();
-                   // //submit the form
-                   //  $("#newsletter-validate-detail").submit( function(e){
-                   //
-                   //      //e.preventDefault();
-                   //      let post_url = $(this).attr("action");
-                   //      console.log("post_url");
-                   //      let post_data = $(this).serialize();
-                   //      console.log("post_data");
-                   //
-                   //      $.post(post_url, post_data, function (response) {
-                   //             $("#server-results").html(response);
-                   //      });
-                   //
-                   //  });
                }
                else{
                    alert('Invalid Email');
                 }
             });
-            // $('[data-role=example]')  // we expect that page contains the <tag data-role="example">..</tag> markup
-            //     .accordion({ // now we can use "accordion" as jQuery plugin
-            //         header:  '[data-role=header]',
-            //         content: '[data-role=content]',
-            //         trigger: '[data-role=trigger]',
-            //         ajaxUrlElement: "a"
-            //     });
         });
     });
 </script>
