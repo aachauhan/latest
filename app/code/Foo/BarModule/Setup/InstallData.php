@@ -14,6 +14,19 @@ class InstallData implements InstallDataInterface{
     {
         // TODO: Implement install() method.
         $setup->startSetup();
+        $setup->getConnection()->insert(
+            $setup->getTable('barmodule_table'),
+            [
+                'name' => 'Item One'
+            ]
+        );
+
+        $setup->getConnection()->insert(
+            $setup->getTable('barmodule_table'),
+            [
+                'name' => 'Item Two'
+            ]
+        );
 
         $setup->endSetup();
     }
