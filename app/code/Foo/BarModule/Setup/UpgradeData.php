@@ -15,13 +15,13 @@ class UpgradeData implements UpgradeDataInterface
     {
         $setup->startSetup();
 
-        if (version_compare($context->getVersion(), '1.0.0', '<')) {
+        if (version_compare($context->getVersion(), '1.0.0') < 0) {
             $setup->getConnection()->update(
                 $setup->getTable('barmodule_table'),
                 [
-                    'name' => 'change'
+                    'description' => 'change'
                 ],
-                $setup->getConnection()->quoteInto('id = ?', 1)
+                $setup->getConnection()->quoteInto('id < ?', 3)
             );
         }
 
